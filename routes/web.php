@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/demo', [HomeController::class, 'demo']);
+Route::inertia('/test', 'test');

@@ -10,7 +10,15 @@ class HomeController extends Controller
         return Inertia::render('Home', ['name' => 'john']);
     }*/
 
-    public function index (){
+    public function index() {
         return Inertia::render('Home', ['name' => 'john']);
+    }
+
+    public function demo() {
+        return Inertia::render('Demo');
+    }
+
+    public function test() {
+        return Inertia::render('Test');
     }
 }
