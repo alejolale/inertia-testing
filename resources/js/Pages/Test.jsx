@@ -3,10 +3,12 @@ import Layout from "../Layouts/Layout";
 
 const Test = () => {
     return (
-        <Layout>
+        <>
             <p>navigates without controller</p>
-        </Layout>
+        </>
     );
 };
+
+Test.layout = (page) => <Layout children={page} />
 
 export default Test;
