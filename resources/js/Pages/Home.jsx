@@ -7,6 +7,4 @@ function Home ({name}) {
     </>
 }
 
-Home.layout = (page) => <Layout children={page} />
-
 export default Home;

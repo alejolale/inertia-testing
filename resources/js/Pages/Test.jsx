@@ -9,6 +9,4 @@ const Test = () => {
     );
 };
 
-Test.layout = (page) => <Layout children={page} />
-
 export default Test;

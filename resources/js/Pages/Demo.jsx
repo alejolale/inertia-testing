@@ -14,6 +14,4 @@ const Demo = ({time}) => {
     );
 };
 
-Demo.layout = (page) => <Layout children={page} />
-
 export default Demo;
