@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "@inertiajs/inertia-react";
 import Nav from "../Components/Nav";
 
-const Layout = ({children}) => {
+const Layout = (children) => {
     return (
         <>
             <header className='bg-gray-100'>
