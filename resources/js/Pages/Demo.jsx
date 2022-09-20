@@ -1,7 +1,7 @@
 import React from 'react';
 import {Head, Link} from "@inertiajs/inertia-react";
 
-const Demo = ({time}) => {
+const Demo = ({time, users}) => {
     return (
         <>
             <Head>
@@ -10,6 +10,8 @@ const Demo = ({time}) => {
                 <meta type='description' content='Home information' headKey='description'/>
             </Head>
             <p>Hey demo</p>
+
+            {users.map(user => <p>{user.name}</p>)}
             <div className='mt-[1400px]'>
                 <p>time is :  {time}</p>
                 <Link href='/demo' preserveScroll className='text-blue-500' >go to demo</Link>
