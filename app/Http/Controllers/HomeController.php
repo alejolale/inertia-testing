@@ -19,10 +19,15 @@ class HomeController extends Controller
                     $query->where('name', 'like', "%{$search}%");
                 })
                 ->paginate(10)
+                ->withQueryString()//this sends paginations after doing a filter on users
                 ->through(fn($user) => [
                 'id' => $user->id,
                 'name' => $user->name,
-            ])
+            ]),
+            //we can send query strings from server side to front
+            'filters' => Request::only(['search']),
+
+
             // with map the pagination is changed if we change page we have to use through instaed
             /*'users' => User::paginate(10)->map(fn($user) => [
                 'id' => $user->id,

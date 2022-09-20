@@ -3,8 +3,8 @@ import {Head, Link} from "@inertiajs/inertia-react";
 import clsx from "clsx";
 import {Inertia} from "@inertiajs/inertia";
 
-const Demo = ({time, users}) => {
-    const [value, setValue]= useState('')
+const Demo = ({time, users, filters}) => {
+    const [value, setValue]= useState(filters.search)
 
     const handleChange= (e) => {
         setValue(e.target.value)
