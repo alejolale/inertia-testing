@@ -1,13 +1,14 @@
 import React from 'react';
-import {InertiaLink} from "@inertiajs/inertia-react";
+import {Link} from "@inertiajs/inertia-react";
 
 const Nav = () => {
     return (
         <header>
             <nav>
-                <InertiaLink href='/'>Accueil</InertiaLink>
-                <InertiaLink href='/demo'>Demo</InertiaLink>
-                <InertiaLink href='/test'>Test</InertiaLink>
+                <Link href='/'>Accueil</Link>
+                <Link href='/demo'>Demo</Link>
+                <Link href='/test'>Test</Link>
+                <Link href='/logout' method='post' as='button' data={{foo: 'Log out information'}} >Logout</Link>
             </nav>
         </header>
     );
