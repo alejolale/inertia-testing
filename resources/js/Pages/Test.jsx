@@ -1,9 +1,12 @@
 import React from 'react';
-import Layout from "../Layouts/Layout";
+import {Head} from "@inertiajs/inertia-react";
 
 const Test = () => {
     return (
         <>
+            <Head>
+                <title>Test</title>
+            </Head>
             <p>navigates without controller</p>
         </>
     );

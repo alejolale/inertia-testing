@@ -10,7 +10,7 @@ InertiaProgress.init({ color: 'red', showSpinner: true})
 
 createInertiaApp({
     resolve: async (name) => {
-        let page =  (await import(`./Pages/${name}`)).default
+        let page =  (await import(/* @vite-ignore */`./Pages/${name}`)).default
 
         if (! page.layout){
             page.layout =  Layout
@@ -21,4 +21,5 @@ createInertiaApp({
     setup({el, App, props}) {
         render(React.createElement(App, props), el)
     },
+    title: title => `My app - ${title}`
 })
