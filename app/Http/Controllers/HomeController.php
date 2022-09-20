@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
-use function GuzzleHttp\Promise\all;
 
 class HomeController extends Controller
 {
@@ -14,7 +14,12 @@ class HomeController extends Controller
 
     public function demo() {
         return Inertia::render('Demo', [ 'time' => now()->toTimeString(),
-            'users' => User::paginate(10)->through(fn($user) => [
+            'users' => User::query()
+                ->when(Request::input('search'),function ($query, $search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->paginate(10)
+                ->through(fn($user) => [
                 'id' => $user->id,
                 'name' => $user->name,
             ])
