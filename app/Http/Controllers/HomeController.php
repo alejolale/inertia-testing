@@ -37,6 +37,10 @@ class HomeController extends Controller
             ]);
     }
 
+    public function createUser() {
+        return Inertia::render('CreateUser');
+    }
+
     public function test() {
         return Inertia::render('Test');
     }

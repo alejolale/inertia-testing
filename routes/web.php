@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Models\User;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/demo', [HomeController::class, 'demo']);
+Route::get("/create", [HomeController::class, 'createUser']);
+Route::post('/users', function() {
+    $values = Request::validate([
+        'name' => 'required',
+        'email' => ['required', 'email'],
+        'password' => 'required',
+    ]);
+
+    User::create($values);
+
+    //redirect
+    return redirect(('/demo'));
+});
+
 Route::inertia('/test', 'test');
 
 Route::post('/logout', function (){

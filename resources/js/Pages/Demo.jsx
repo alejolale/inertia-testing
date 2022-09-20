@@ -21,7 +21,9 @@ const Demo = ({time, users, filters}) => {
                 {/* if we overrides it on other component like header we must use headKey to prevent multiple metas */}
                 <meta type='description' content='Home information' headKey='description'/>
             </Head>
-            <p>Hey demo</p>
+            <p className='mb-4'>Hey demo</p>
+
+            <Link href='/create' className='text-blue-500 hover:text-blue-700' >Create new user</Link>
 
             <input
                 type='text'
@@ -29,6 +31,7 @@ const Demo = ({time, users, filters}) => {
                 value={value}
                 onChange={handleChange}
                 className="
+                mt-4
                     form-control
                     block
                     w-full
