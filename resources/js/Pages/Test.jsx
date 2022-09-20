@@ -1,10 +1,11 @@
 import React from 'react';
+import Layout from "../Layouts/Layout";
 
 const Test = () => {
     return (
-        <div>
-            navigates without controller
-        </div>
+        <Layout>
+            <p>navigates without controller</p>
+        </Layout>
     );
 };
 
