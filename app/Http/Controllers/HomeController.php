@@ -15,7 +15,7 @@ class HomeController extends Controller
     }
 
     public function demo() {
-        return Inertia::render('Demo');
+        return Inertia::render('Demo', [ 'time' => now()->toTimeString()]);
     }
 
     public function test() {
