@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Inertia\Inertia;
+use function GuzzleHttp\Promise\all;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,16 @@ class HomeController extends Controller
 
     public function demo() {
         return Inertia::render('Demo', [ 'time' => now()->toTimeString(),
-            'users' => User::all()->map(fn($user) => ['name' => $user->name]) //make attention to data we're going to send
+            'users' => User::paginate(10)->through(fn($user) => [
+                'id' => $user->id,
+                'name' => $user->name,
+            ])
+            // with map the pagination is changed if we change page we have to use through instaed
+            /*'users' => User::paginate(10)->map(fn($user) => [
+                'id' => $user->id,
+                'name' => $user->name,
+            ])*/
+            // 'users' => User::all()
             ]);
     }
 

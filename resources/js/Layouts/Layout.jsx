@@ -1,10 +1,14 @@
 import React from 'react';
-import {Link} from "@inertiajs/inertia-react";
 import Nav from "../Components/Nav";
+import { Head } from '@inertiajs/inertia-react'
+
 
 const Layout = (children) => {
     return (
         <>
+            <Head>
+                <meta charSet="utf-8" />
+            </Head>
             <header className='bg-gray-100'>
                 <Nav />
             </header>
