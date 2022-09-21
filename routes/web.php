@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Request;
@@ -16,24 +17,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/demo', [HomeController::class, 'demo']);
-Route::get("/create", [HomeController::class, 'createUser']);
-Route::post('/users', function() {
-    $values = Request::validate([
-        'name' => 'required',
-        'email' => ['required', 'email'],
-        'password' => 'required',
-    ]);
+Route::get('login', [LoginController::class, 'create'])->name('login');
+Route::post('login', [LoginController::class, 'store']);
+Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');
 
-    User::create($values);
+Route::middleware('auth')->group(function (){
 
-    //redirect
-    return redirect(('/demo'));
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/demo', [HomeController::class, 'demo']);
+    Route::get("/create", [HomeController::class, 'createUser']);
+    Route::post('/users', function() {
+        $values = Request::validate([
+            'name' => 'required',
+            'email' => ['required', 'email'],
+            'password' => 'required',
+        ]);
+        User::create($values);
+
+        //redirect
+        return redirect(('/demo'));
+    });
+
+    Route::inertia('/test', 'test');
+
+    /*Route::post('/logout', function (){
+        dd(request('foo'));
+    });*/
+
 });
 
-Route::inertia('/test', 'test');
-
-Route::post('/logout', function (){
-    dd(request('foo'));
-});
