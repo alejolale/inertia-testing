@@ -4,7 +4,7 @@ import clsx from "clsx";
 import {Inertia} from "@inertiajs/inertia";
 import debounce from 'lodash/debounce'
 
-const Demo = ({time, users, filters}) => {
+const Demo = ({time, users, filters, can}) => {
     const [value, setValue]= useState(filters.search)
 
     const debouncedSave =  useCallback(debounce(nextValue => Inertia.get('/demo', {search: nextValue}, {
@@ -28,7 +28,7 @@ const Demo = ({time, users, filters}) => {
             </Head>
             <p className='mb-4'>Hey demo</p>
 
-            <Link href='/create' className='text-blue-500 hover:text-blue-700' >Create new user</Link>
+            {can.createUser && <Link href='/create' className='text-blue-500 hover:text-blue-700'>Create new user</Link>}
 
             <input
                 type='text'

@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/demo', [HomeController::class, 'demo']);
-    Route::get("/create", [HomeController::class, 'createUser']);
+    Route::get("/create", [HomeController::class, 'createUser'])->middleware('can:create,App\Models\User');
     Route::post('/users', function() {
         $values = Request::validate([
             'name' => 'required',

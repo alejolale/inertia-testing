@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
@@ -26,14 +27,17 @@ class HomeController extends Controller
             ]),
             //we can send query strings from server side to front
             'filters' => Request::only(['search']),
-
-
             // with map the pagination is changed if we change page we have to use through instaed
             /*'users' => User::paginate(10)->map(fn($user) => [
                 'id' => $user->id,
                 'name' => $user->name,
             ])*/
             // 'users' => User::all()
+
+            //Authorizations
+            'can' => [
+                'createUser' => Auth::user()->can('create', User::class)
+            ]
             ]);
     }
 
