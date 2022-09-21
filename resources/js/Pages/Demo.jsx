@@ -1,17 +1,22 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Head, Link} from "@inertiajs/inertia-react";
 import clsx from "clsx";
 import {Inertia} from "@inertiajs/inertia";
+import debounce from 'lodash/debounce'
 
 const Demo = ({time, users, filters}) => {
     const [value, setValue]= useState(filters.search)
 
+    const debouncedSave =  useCallback(debounce(nextValue => Inertia.get('/demo', {search: nextValue}, {
+        preserveState: true,
+        replace: true,
+    }), 1000), [])
+
     const handleChange= (e) => {
-        setValue(e.target.value)
-        Inertia.get('/demo', {search: e.target.value}, {
-            preserveState: true,
-            replace: true,
-        });
+        const {value: nextValue} = e.target
+        setValue(nextValue)
+
+        debouncedSave(nextValue)
     }
 
     return (
